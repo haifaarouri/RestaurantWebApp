@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose")
 
 const PlatSchema = mongoose.Schema({
-        name: {
+        nom: {
             type: String,
             required: true,
         },
@@ -19,4 +19,6 @@ const PlatSchema = mongoose.Schema({
     }
 )
 
-export const Plat = mongoose.model('Plat', PlatSchema)
+const Plat = mongoose.model('Plat', PlatSchema)
+
+module.exports = Plat

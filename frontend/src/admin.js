@@ -1,9 +1,40 @@
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md"
+import { BiPlus } from "react-icons/bi"
+import { deletePlat, fetchData } from './services/platService';
+import { Link } from "react-router-dom";
+
 function Admin() {
+
+  const [platsList, setPlatsList] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/plats/getAllPlats")
+            .then((response) => {
+              console.log(response.data)
+              setPlatsList(response.data)
+            })
+            .catch((e)=> console.log(e))
+  }, [])
+
+  const submitDelete = async (id) => {
+    await deletePlat(id)
+    axios.get("http://localhost:3001/plats/getAllPlats")
+          .then((response) => {
+            console.log(response.data)
+            setPlatsList(response.data)
+          })
+          .catch((e)=> console.log(e))
+  }
+
   return (
     <div className="container-xxl p-0">
         <div className="container-xxl p-0">
           <nav className="navbar navbar-expand-lg" style={{backgroundColor: "#0F172B", marginLeft:"-8.4%", marginRight:"-8.4%"}}>
-            <a href="" className="navbar-brand p-2">
+            <a href="/" className="navbar-brand p-2">
               <img src="ChilisLogo.png" alt="Logo" width="100px"/>
             </a>
             <button
@@ -28,36 +59,30 @@ function Admin() {
             <div className="row align-items-center g-5">
               <div className="d-felx justify-content-between">
                 <h1>Liste de tous les Plats</h1>
-                <button className="btn" style={{backgroundColor:"#b61919", color: "white", borderRadius: "10px"}}>Ajouter des plats</button>
+                <Link to="/admin/platForm" className="btn" style={{backgroundColor:"#b61919", color: "white", borderRadius: "10px"}}>
+                  Ajouter des plats <BiPlus></BiPlus>
+                </Link>
               </div>
               <div className="col-lg-12">
-                <table class="table table-striped table-hover">
+                <table className="table table-striped table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">Image du Plat</th>
+                      <th scope="col">Nom du Plat</th>
+                      <th scope="col">Prix du plat</th>
+                      <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
+                    {platsList.length>0 && platsList.map((p, i)=><tr key={i}>
+                      <td style={{width: "50%"}}><img src={`http://localhost:3001/PlatPictures/${p.image}`} alt='platPic' style={{width: "60%", height: "60%"}}/></td>
+                      <td>{p.nom}</td>
+                      <td>{p.prix} DT</td>
+                      <td>
+                        <Link to={`/admin/edit-plat/${p._id}`} className="btn" style={{backgroundColor:"#59bb1a", color: "white", borderRadius: "10px", marginRight: "20px"}}><CiEdit size="25px"/></Link>
+                        <button className="btn" style={{backgroundColor:"#b61919", color: "white", borderRadius: "10px"}} onClick={()=>submitDelete(p._id)}><MdDelete size="25px"/></button>
+                      </td>
+                    </tr>)}
                   </tbody>
                 </table>
               </div>

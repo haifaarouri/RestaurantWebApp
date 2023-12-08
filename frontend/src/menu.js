@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Menu() {
   return (
       <div className="container-xxl bg-white p-0">
@@ -38,7 +40,7 @@ function Menu() {
                     syriennes
                   </h1>
                   <a
-                    href=""
+                    href="/"
                     className="m-2 btn py-sm-3 px-sm-5 me-3 animated slideInLeft text-white animated slideInLeft"
                     style={{backgroundColor: "#b61919", borderRadius: "15px"}}
                   >
@@ -64,6 +66,7 @@ function Menu() {
                       className="img-fluid rounded w-75 wow zoomIn"
                       data-wow-delay="0.1s"
                       src="one.jpg"
+                      alt=''
                     />
                   </div>
                   <div className="col-6 text-start">
@@ -72,6 +75,7 @@ function Menu() {
                       data-wow-delay="0.3s"
                       src="two.jpg"
                       style={{ marginTop: "53%" }}
+                      alt=''
                     />
                   </div>
                   <div className="col-6 text-end">
@@ -79,6 +83,7 @@ function Menu() {
                       className="img-fluid rounded w-75 wow zoomIn"
                       data-wow-delay="0.5s"
                       src="tri.jpg"
+                      alt=''
                     />
                   </div>
                   <div className="col-6 text-start">
@@ -86,6 +91,7 @@ function Menu() {
                       className="img-fluid rounded w-75 wow zoomIn"
                       data-wow-delay="0.7s"
                       src="four.jpg"
+                      alt=''
                     />
                   </div>
                 </div>
@@ -162,7 +168,7 @@ function Menu() {
                   <a
                     className="d-flex align-items-center text-start mx-3 pb-3"
                     data-bs-toggle="pill"
-                    href="#"
+                    href="/"
                   >
                     <i className="fa fa-hamburger fa-2x" style={{color: "#b61919"}}/>
                     <div className="ps-3">
@@ -175,7 +181,7 @@ function Menu() {
                   <a
                     className="d-flex align-items-center text-start mx-3 me-0 pb-3"
                     data-bs-toggle="pill"
-                    href="#"
+                    href="/"
                   >
                     <i className="fa fa-utensils fa-2x" style={{color: "#b61919"}}/>
                     <div className="ps-3">
@@ -322,13 +328,13 @@ function Menu() {
                   info@example.com
                 </p>
                 <div className="d-flex pt-2 justify-content-center mb-2">
-                  <a className="btn btn-outline-light btn-social" href="">
+                  <a className="btn btn-outline-light btn-social" href="/">
                     <i className="fab fa-instagram" />
                   </a>
-                  <a className="btn btn-outline-light btn-social" href="">
+                  <a className="btn btn-outline-light btn-social" href="/">
                     <i className="fab fa-facebook-f" />
                   </a>
-                  <a className="btn btn-outline-light btn-social" href="">
+                  <a className="btn btn-outline-light btn-social" href="/">
                     <i className="fab fa-youtube" />
                   </a>
                 </div>
@@ -349,7 +355,7 @@ function Menu() {
               <div className="row">
                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                   ©{" "}
-                  <a className="border-bottom" href="#">
+                  <a className="border-bottom" href="/">
                     Chili's Tunisie
                   </a>
                   , All Right Reserved.
@@ -361,7 +367,7 @@ function Menu() {
         </div>
         {/* Footer End */}
         {/* Back to Top */}
-        <a href="#" className="btn btn-lg btn-lg-square back-to-top" style={{backgroundColor: "#59bb1a", color: "white"}}>
+        <a href="/" className="btn btn-lg btn-lg-square back-to-top" style={{backgroundColor: "#59bb1a", color: "white"}}>
           <i className="bi bi-arrow-up" />
         </a>
       </div>
