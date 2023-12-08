@@ -1,6 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 function Menu() {
+
+  const [platsList, setPlatsList] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/plats/getAllPlats")
+            .then((response) => {
+              console.log(response.data)
+              setPlatsList(response.data)
+            })
+            .catch((e)=> console.log(e))
+  }, [])
+
   return (
       <div className="container-xxl bg-white p-0">
         {/* Navbar & Hero Start */}
@@ -198,42 +211,15 @@ function Menu() {
                     <div className="container-xxl py-5">
                       <div className="container">
                         <div className="row g-4">
-                          <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                          {platsList.length>0 && platsList.map((p, i)=><div key={i} className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div className="pt-3" style={{boxShadow: "0 0 45px rgba(0, 0, 0, .08)", transition: ".5s", borderRadius: "15px"}}>
                               <div className="p-4">
-                                <img alt="" src="plats/plat1.png" style={{width: "100%", marginTop: "-6%", marginBottom: "6%"}}/>
-                                <h5>Trio Fajitas</h5>
-                                <p>49,90 DT</p>
+                                <img alt="" src={`http://localhost:3001/PlatPictures/${p.image}`} style={{width: "100%", marginTop: "-6%", marginBottom: "6%"}}/>
+                                <h5>{p.nom}</h5>
+                                <p>{p.prix} DT</p>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div className="pt-3" style={{boxShadow: "0 0 45px rgba(0, 0, 0, .08)", transition: ".5s", borderRadius: "15px"}}>
-                              <div className="p-4">
-                                <img alt="" src="plats/plat1.png" style={{width: "100%", marginTop: "-6%", marginBottom: "6%"}}/>
-                                <h5>Trio Fajitas</h5>
-                                <p>49,90 DT</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                            <div className="pt-3" style={{boxShadow: "0 0 45px rgba(0, 0, 0, .08)", transition: ".5s", borderRadius: "15px"}}>
-                              <div className="p-4">
-                                <img alt="" src="plats/plat1.png" style={{width: "100%", marginTop: "-6%", marginBottom: "6%"}}/>
-                                <h5>Trio Fajitas</h5>
-                                <p>49,90 DT</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                            <div className="pt-3" style={{boxShadow: "0 0 45px rgba(0, 0, 0, .08)", transition: ".5s", borderRadius: "15px"}}>
-                              <div className="p-4">
-                                <img alt="" src="plats/plat1.png" style={{width: "100%", marginTop: "-6%", marginBottom: "6%"}}/>
-                                <h5>Trio Fajitas</h5>
-                                <p>49,90 DT</p>
-                              </div>
-                            </div>
-                          </div>
+                          </div>)}
                         </div>
                       </div>
                     </div>
